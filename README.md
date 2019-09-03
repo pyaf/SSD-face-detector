@@ -6,7 +6,7 @@ This is a web app which uses Single Shot Multibox detector (SSD) framework to de
 ## Demo:
 
 
-[![Watch the video](templates/index.png)](https://youtu.be/pZFJFl_4o00)
+[![Watch the video](templates/image.png)](https://youtu.be/pZFJFl_4o00)
 
 The model is running on CPU, so the response time is a bit slow.
 
