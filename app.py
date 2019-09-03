@@ -62,11 +62,11 @@ class MyThread(threading.Thread):
         while True:
             if frame is None:
                 continue
-            print(frame.shape)
+            #print(frame.shape)
             detections = self.predict(frame)
 
     def predict(self, frame):
-        print('Predicting..')
+        #print('Predicting..')
         start = time.time()
         # img = cv2.cvtColor(frame, cv2.IMREAD_COLOR)
         x = torch.from_numpy(self.transform(frame)[0]).permute(2, 0, 1)
@@ -81,7 +81,7 @@ class MyThread(threading.Thread):
             frame.shape[1], frame.shape[0]]
         )
         j = 0
-        while dets[0, 1, j, 0] >= 0.5:
+        while dets[0, 1, j, 0] >= 0.4:
             score = dets[0, 1, j, 0]
             box = [score.item()] + (dets[0, 1, j, 1:] * scale).cpu().numpy().tolist()
             bboxes.append(box)  # XMin, YMin, XMax, YMax
@@ -92,7 +92,7 @@ class MyThread(threading.Thread):
 
 
 Modelthread = MyThread()
-#Modelthread.start()
+Modelthread.start()
 
 
 @app.route('/postImage', methods=['GET', 'POST'])
@@ -100,9 +100,9 @@ def postImage():
     global frame
     img64 = request.form['image'].replace("data:image/png;base64,", "")
     image = Image.open(BytesIO(base64.b64decode(img64))).convert("RGB")
-    #frame = np.asarray(image, dtype=np.float64)
+    frame = np.asarray(image, dtype=np.float64)
     #bboxes = Modelthread.predict(frame)
-    detections = [[0.80586177110672,111.9474105834961,79.74383544921875,330.58477783203125,285.7025146484375], [0.80586177110672,111.9474105834961,89.74383544921875,350.58477783203125,295.7025146484375]]
+    #detections = [[0.80586177110672,111.9474105834961,79.74383544921875,330.58477783203125,285.7025146484375], [0.80586177110672,111.9474105834961,89.74383544921875,350.58477783203125,295.7025146484375]]
 
     #return jsonify(bboxes)
     return jsonify(detections)
