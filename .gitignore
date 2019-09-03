@@ -91,8 +91,6 @@ ENV/
 # atom remote-sync package
 .remote-sync.json
 
-# weights
-weights/
 
 #DS_Store
 .DS_Store
@@ -104,25 +102,11 @@ dev.ipynb
 .vscode/
 
 # not ready
-videos/
-templates/
-data/ssd_dataloader.py
-data/datasets/
-doc/visualize.py
-read_results.py
-ssd300_120000/
-demos/live
-webdemo.py
-test_data_aug.py
-
 # attributes
 
 # pycharm
 .idea/
 
 # temp checkout soln
-data/datasets/
-data/ssd_dataloader.py
-
 # pylint
 .pylintrc
