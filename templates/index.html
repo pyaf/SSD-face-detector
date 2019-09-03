@@ -26,9 +26,10 @@ canvas {
     This website uses <a href="https://arxiv.org/abs/1512.02325">Single Shot Multibox Detector</a> to detect human faces.
     <br>
     <b>How it works under the hood:</b> <br>
-    1. Uses JavaScript to ask for Webcam permission, once granted captures frames and makes an ajax post request to the backend. <br>
-    2. The Flask backend captures the incoming frames, uses a trained SSD model trained on human selfie images to detect human faces and returns detected bounding box coordinates. <br>
-    3. The ajax call receives the bounding box coordinates and plots them to the html canvas. <br>
+
+    1. It uses JavaScript to ask for Webcam permission, once granted it captures frames and sends them to the Flask backend via an AJAX post request. <br>
+    2. The Flask backend captures the incoming frames, uses the SSD model (trained on human selfie images) to detect human faces and returns detected bounding box coordinates. <br>
+    3. The ajax call receives the bounding box coordinates and plots them onto the html canvas. <br>
     <p>
 
     </center>
